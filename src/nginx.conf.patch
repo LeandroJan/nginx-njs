@@ -1,0 +1,33 @@
+--- nginx.bak   2024-12-04 20:15:28.726748211 +0000
++++ nginx.conf  2024-12-04 20:28:46.710934374 +0000
+@@ -10,11 +10,15 @@
+ # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+ include /usr/share/nginx/modules/*.conf;
+
++load_module /usr/lib64/nginx/modules/ngx_http_js_module.so;
++
+ events {
+     worker_connections 1024;
+ }
+
+ http {
++    js_import /etc/nginx/app/test.js;
++
+     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                       '$status $body_bytes_sent "$http_referer" '
+                       '"$http_user_agent" "$http_x_forwarded_for"';
+@@ -43,9 +47,12 @@
+         # Load configuration files for the default server block.
+         include /opt/app-root/etc/nginx.default.d/*.conf;
+
+-        location = /404.html {
+-        }
++        # location = /404.html {
++        # }
+
++        location /hello {
++            js_content test.hello;
++        }
+     }
+
+ # Settings for a TLS enabled server.

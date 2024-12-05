@@ -1,0 +1,31 @@
+FROM registry.access.redhat.com/rhel9/nginx-122:1-49
+
+# Add application sources to a directory that the assemble script expects them
+# and set permissions so that the container runs without root access
+ENV NGINX_VERSION "1.22.1"
+ENV NJS_VERSION   "0.7.11"
+ENV NJS_MODULE_VERSION 0.7.12
+USER 0
+COPY test-app /tmp/src/
+COPY common/etc /etc
+COPY common/docker-entrypoint.sh /docker-entrypoint.sh
+COPY common/docker-entrypoint.d /docker-entrypoint.d/
+COPY oss/etc /etc
+
+RUN chown -R 1001:0 /tmp/src
+RUN yum install -y \
+        yum-utils-4.3.0 \
+        cmake-3.20.2 \
+        gcc-11.4.1 \
+        gcc-c++-11.4.1 \
+        make-4.3 \
+        git-2.39.3 \
+        nginx-module-njs-${NGINX_VERSION}+${NJS_VERSION}; \
+    yum clean all;
+
+# Let the assemble script to install the dependencies
+RUN /usr/libexec/s2i/assemble
+USER 1001
+
+# Run script uses standard ways to run the application
+CMD ["/usr/libexec/s2i/run"]
