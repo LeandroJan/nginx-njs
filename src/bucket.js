@@ -1,6 +1,6 @@
 // Importing necessary modules
 function handle(r) {
-    var bucket = "my-static-html"; // Replace with your MinIO bucket name
+    var bucket = "test"; // Replace with your MinIO bucket name
     var s3_host = "minio-service:9000"; // MinIO service in OpenShift
     var key = r.uri.substr(1); // Strip leading "/"
 
