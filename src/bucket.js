@@ -1,5 +1,5 @@
 async function handle(r) {
-    var bucket = "my-static-html"; // Replace with your MinIO bucket name
+    var bucket = "test"; // Replace with your MinIO bucket name
     var s3_host = "minio-service:9000"; // MinIO service within OpenShift
     var key = r.uri === "/" ? "index.html" : r.uri.substr(1); // Serve index.html by default
 
@@ -12,7 +12,7 @@ async function handle(r) {
             r.headersOut["Content-Type"] = "text/html"; // Set HTML content type
             r.return(res.status, res.responseBody);
         } else {
-            r.return(404, "File not found"); // Return a 404 if the object is missing
+            r.return(404, "File not found inside the bucket"); // Return a 404 if the object is missing
         }
     });
 }

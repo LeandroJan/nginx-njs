@@ -25,7 +25,7 @@
 +        # location = /404.html {
 +        # }
 
-+        location /hello {
++        location / {
 +            js_content bucket.handle;
 +        }
      }
