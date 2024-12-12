@@ -5,7 +5,7 @@ async function handle(r) {
 
     // Construct the S3 URL
     var s3_url = `http://${s3_host}/${bucket}/${key}`;
-    print(s3_url);
+    console.log(s3_url);
 
     // Fetch the object from MinIO
     r.subrequest(s3_url, function (res) {
