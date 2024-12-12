@@ -16,6 +16,7 @@ RUN yum install -y --nogpgcheck rpm-build && \
     mv ~/rpmbuild/RPMS/x86_64/nginx-r1.24.0-1.24.0-1.x86_64.rpm . && \
     mv ./test.js /etc/nginx/app/ &&\
     mv ./bucket.js /etc/nginx/app/ &&\
+    mv ./minio.js /etc/nginx/app/ &&\
     patch  /etc/nginx/nginx.conf < ~/nginx.conf.patch && \
     yum install -y --nogpgcheck ./nginx-r1.24.0-1.24.0-1.x86_64.rpm \
     ./nginx-module-njs-1.24.0+0.8.3-1.el9.ngx.x86_64.rpm && \
