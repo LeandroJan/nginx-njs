@@ -26,15 +26,16 @@
 +        # }
 
 +        location / {
-+        #    js_content bucket.handle;
-+        # Default file to serve if root URL is requested
-+            rewrite ^/$ /index.html;
++           #    js_content bucket.handle;
 +
-+            # Proxy requests to MinIO
-+            proxy_pass http://minio-service:9000/test/;
++           # Default file to serve if root URL is requested
++           rewrite ^/$ /index.html;
 +
-+            # Preserve client headers
-+            proxy_set_header Host $host;
++           # Proxy requests to MinIO
++           proxy_pass http://minio-service:9000/test/;
++
++           # Preserve client headers
++           proxy_set_header Host $host;
 +        }
      }
 
