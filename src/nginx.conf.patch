@@ -26,7 +26,7 @@
 +        # }
 
 +        location / {
-+            js_content bucket.handle;
++            js_content minio.get;
 +        }
      }
 
