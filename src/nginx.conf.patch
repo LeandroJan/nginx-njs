@@ -11,7 +11,7 @@
  }
 
  http {
-+    js_import /etc/nginx/app/minio.js;
++    js_import /etc/nginx/app/bucket.js;
 +
      log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                        '$status $body_bytes_sent "$http_referer" '
@@ -26,7 +26,7 @@
 +        # }
 
 +        location / {
-+            js_content minio.get;
++            js_content bucket.handle;
 +        }
      }
 
