@@ -1,8 +1,8 @@
 function handle(r) {
     var key = r.uri === "/" ? "index.html" : r.uri.substr(1);
 
-    // Redirect to the named location with the path dynamically appended
-    r.internalRedirect(`@minio_proxy/${key}`);
+    // Redirect to the /s3/ location, appending the key
+    r.internalRedirect(`/s3/${key}`);
 }
 
 export default { handle };
