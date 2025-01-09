@@ -33,6 +33,8 @@ Then click `Create`.
 
 7. Upload a static HTML file to the `test` bucket, and you should be able to access it directly through the nginx exposed route.
 
+8. Access the static content in the bucket using the URL provided by the NGINX pod, appending the name of the HTML file to the URL.
+
 ## Important Notes
 - If you wish to change the bucket name, you can do so.  
 - The name `test` is hardcoded in the `nginx.conf` file. Update the bucket name in the following section by modifying the `proxy_pass` URL:  
